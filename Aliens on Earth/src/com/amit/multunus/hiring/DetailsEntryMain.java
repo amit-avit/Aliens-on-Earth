@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.amit.multunus.hiring.entity.Alien;
 import com.amit.multunus.hiring.format.FormatWriter;
 import com.amit.multunus.hiring.format.FormatWriterFactory;
-import com.amit.multunus.hiring.util.AlienReader;
 import com.amit.multunus.hiring.util.ConsoleReader;
 import com.amit.multunus.hiring.util.FormatClassReader;
 
@@ -21,11 +20,10 @@ public class DetailsEntryMain {
 	}
 
 	private static void doDataEntry() throws Exception {
-		AlienReader alienReader = AlienReader.getInstance();
 		FormatClassReader formatClassReader = FormatClassReader.getInstance();
 		do {
 			System.out.println("-------- Please enter the Alien details --------");
-			Alien alien = alienReader.read();
+			Alien alien = Alien.readAlien();
 			String formatWriterClass = formatClassReader.read();
 			FormatWriter formatWriter = FormatWriterFactory.getFormatWriter(formatWriterClass);
 			formatWriter.writeToFile(alien);
